@@ -9,7 +9,7 @@ using json = nlohmann::json;
 using namespace std;
 
 // json序列化示例1
-void func1()
+string func1()
 {
     json js;
     js["msg_type"] = 2;
@@ -19,7 +19,7 @@ void func1()
 
     string sendBuf = js.dump(); // 将序列化后的json变成字符串格式
 
-    cout << sendBuf.c_str() << endl;
+    return sendBuf;
 }
 
 // 序列化示例2
@@ -65,9 +65,13 @@ void func3()
 
 int main()
 {
-    // func1();
-    // func2();
-    func3();
-
+    string recvBuf = func1();
+    // 数据的反序列化 json字符串 =》反序列化
+    json jsbuf = json::parse(recvBuf);
+    cout << jsbuf["msg_type"] << endl;
+    cout << jsbuf["from"] << endl;
+    cout << jsbuf["to"] << endl;
+    cout << jsbuf["msg"] << endl;
+    
     return 0;
 }
