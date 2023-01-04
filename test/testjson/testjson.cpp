@@ -4,6 +4,7 @@ using json = nlohmann::json;
 #include <iostream>
 #include <vector>
 #include <map>
+#include <string>
 
 using namespace std;
 
@@ -16,7 +17,9 @@ void func1()
     js["to"] = "li si";
     js["msg"] = "hello";
 
-    cout << js << endl;
+    string sendBuf = js.dump(); // 将序列化后的json变成字符串格式
+
+    cout << sendBuf.c_str() << endl;
 }
 
 int main()
